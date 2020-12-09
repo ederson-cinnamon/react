@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 
 class Index extends Component {
-  state = { increment: 0 }
+  constructor(props) {
+    super(props);
+    this.state = { isToggleOn: true }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    this.setState(state => ({
+      isToggleOn:!state.isToggleOn
+    }))
+  }
   render() {
-    var { increment } = this.state
-    return (<div>
-      <p>{increment}</p>
-      <button onClick={() => {
-        this.setState({ increment: ++increment })
-      }}>Increment</button>
-    </div>);
+    return <button onClick={this.handleClick}>
+      {this.state.isToggleOn ? 'ON' : 'OFF'}
+    </button>
   }
 }
 
